@@ -214,9 +214,7 @@ TEST(lang, generate_cpp) {
     << "generate_destructor()";
   EXPECT_EQ(2, count_matches("void transform_inits(", output_str))
     << "generate_init_method()";
-  EXPECT_EQ(1, count_matches("T__ log_prob(", output_str))
-    << "generate_log_prob()";
-  EXPECT_EQ(1, count_matches("T_ log_prob(", output_str))
+  EXPECT_EQ(2, count_matches("T_ log_prob(", output_str))
     << "generate_log_prob()";
   EXPECT_EQ(1, count_matches("void get_param_names(", output_str))
     << "generate_param_names_method()";
@@ -274,37 +272,37 @@ TEST(langGenerator,funArgs0) {
 TEST(langGenerator,funArgs1) {
   expect_matches(1,
                  "functions { real foo(real x) { return x; } } model { }",
-                 "typename boost::math::tools::promote_args<T0__>::type\n"
+                 "typename boost::math::tools::promote_args<T0_>::type\n"
                  "foo(");
 }
 TEST(langGenerator,funArgs4) {
   expect_matches(1,
                  "functions { real foo(real x1, real x2, real x3, real x4) { return x1; } } model { }",
-                 "typename boost::math::tools::promote_args<T0__, T1__, T2__, T3__>::type\n"
+                 "typename boost::math::tools::promote_args<T0_, T1_, T2_, T3_>::type\n"
                  "foo(");
 }
 TEST(langGenerator,funArgs5) {
   expect_matches(1,
                  "functions { real foo(real x1, real x2, real x3, real x4, real x5) { return x1; } } model { }",
-                 "typename boost::math::tools::promote_args<T0__, T1__, T2__, T3__, typename boost::math::tools::promote_args<T4__>::type>::type\n"
+                 "typename boost::math::tools::promote_args<T0_, T1_, T2_, T3_, typename boost::math::tools::promote_args<T4_>::type>::type\n"
                  "foo(");
 }
 TEST(langGenerator,funArgs0lp) {
   expect_matches(1,
                  "functions { real foo_lp() { return 1.0; } } model { }",
-                 "typename boost::math::tools::promote_args<T_lp__>::type\n"
+                 "typename boost::math::tools::promote_args<T_lp_>::type\n"
                  "foo_lp(");
 }
 TEST(langGenerator,funArgs4lp) {
   expect_matches(1,
                  "functions { real foo_lp(real x1, real x2, real x3, real x4) { return x1; } } model { }",
-                 "typename boost::math::tools::promote_args<T0__, T1__, T2__, T3__, T_lp__>::type\n"
+                 "typename boost::math::tools::promote_args<T0_, T1_, T2_, T3_, T_lp_>::type\n"
                  "foo_lp(");
 }
 TEST(langGenerator,funArgs5lp) {
   expect_matches(1,
                  "functions { real foo_lp(real x1, real x2, real x3, real x4, real x5) { return x1; } } model { }",
-                 "typename boost::math::tools::promote_args<T0__, T1__, T2__, T3__, typename boost::math::tools::promote_args<T4__, T_lp__>::type>::type\n"
+                 "typename boost::math::tools::promote_args<T0_, T1_, T2_, T3_, typename boost::math::tools::promote_args<T4_, T_lp_>::type>::type\n"
                  "foo_lp(");
 }
 

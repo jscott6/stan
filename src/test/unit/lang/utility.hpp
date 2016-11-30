@@ -1,5 +1,5 @@
-#ifndef TEST__UNIT__LANG__PARSER__UTILITY_HPP
-#define TEST__UNIT__LANG__PARSER__UTILITY_HPP
+#ifndef TEST_UNIT_LANG_PARSER_UTILITY_HPP
+#define TEST_UNIT_LANG_PARSER_UTILITY_HPP
 
 #include <gtest/gtest.h>
 #include <iostream>
